@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_transaction: one
+  store: one
+  value: 1.5
+  card: MyString
+
+two:
+  type_transaction: two
+  store: two
+  value: 1.5
+  card: MyString
