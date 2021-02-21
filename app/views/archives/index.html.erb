@@ -29,3 +29,7 @@
 <br>
 
 <%= link_to 'New Archive', new_archive_path %>
+
+<% @store.each do |store| %>
+<%= store.name %> - <%= store.cpf %> - <%= store.owner %><br/>
+<%end%>

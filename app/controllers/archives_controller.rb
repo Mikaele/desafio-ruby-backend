@@ -4,6 +4,7 @@ class ArchivesController < ApplicationController
   # GET /archives or /archives.json
   def index
     @archives = Archive.all
+    @store = Store.all
   end
 
   # GET /archives/1 or /archives/1.json
@@ -15,9 +16,9 @@ class ArchivesController < ApplicationController
     @archive = Archive.new
   end
 
-  # GET /archives/1/edit
-  def edit
-  end
+  # # GET /archives/1/edit
+  # def edit
+  # end
 
   # POST /archives or /archives.json
   def create
@@ -34,18 +35,18 @@ class ArchivesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /archives/1 or /archives/1.json
-  def update
-    respond_to do |format|
-      if @archive.update(archive_params)
-        format.html { redirect_to @archive, notice: "Archive was successfully updated." }
-        format.json { render :show, status: :ok, location: @archive }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @archive.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # PATCH/PUT /archives/1 or /archives/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @archive.update(archive_params)
+  #       format.html { redirect_to @archive, notice: "Archive was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @archive }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @archive.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /archives/1 or /archives/1.json
   def destroy

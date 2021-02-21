@@ -4,7 +4,7 @@ class Transaction < ApplicationRecord
     belongs_to :archive
 
 
-    validates_presence_of :description, :kind, :sign
+    validates_presence_of :value, :card, :event_date
 
 
 end
