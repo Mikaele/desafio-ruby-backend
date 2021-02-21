@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Checkhsum:</strong>
+  <%= @archive.checkhsum %>
+</p>
+
+<p>
+  <strong>Lines:</strong>
+  <%= @archive.lines %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @archive.attachment %>
+</p>
+
+<%= link_to 'Edit', edit_archive_path(@archive) %> |
+<%= link_to 'Back', archives_path %>

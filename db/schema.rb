@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_190445) do
+ActiveRecord::Schema.define(version: 2021_02_21_123307) do
+
+  create_table "archives", force: :cascade do |t|
+    t.string "checkhsum", null: false
+    t.integer "lines", null: false
+    t.string "attachment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["checkhsum"], name: "index_archives_on_checkhsum", unique: true
+  end
 
   create_table "stores", force: :cascade do |t|
     t.string "name", null: false
