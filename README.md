@@ -100,7 +100,7 @@ cd desafio-ruby-backend
 ```
 *Executando a aplicação*
 
-Todos o comando abaixo dever ser executados no terminal/cmd também 
+Todos o comando abaixo devem ser executados no terminal/cmd também 
 
 ##### 3. Compile as imagens necessárias para configurar o ambiente necessário para testar a aplicação
 ```sh
