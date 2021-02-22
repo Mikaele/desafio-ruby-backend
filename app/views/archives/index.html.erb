@@ -1,35 +1,62 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
 
-<h1>Archives</h1>
+  <div class="card col-6 sm-12" >
+        <h3>Carregar arquivo</h3>
+      <%= render 'form', archive: @archive %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Checkhsum</th>
-      <th>Lines</th>
-      <th>Attachment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="card col-6 sm-12" >
+      <h3>Lista de arquivos carregados</h3>
 
-  <tbody>
-    <% @archives.each do |archive| %>
-      <tr>
-        <td><%= archive.checkhsum %></td>
-        <td><%= archive.lines %></td>
-        <td><%= archive.attachment_url %></td>
-        <td><%= link_to 'Show', archive %></td>
-        <td><%= link_to 'Edit', edit_archive_path(archive) %></td>
-        <td><%= link_to 'Destroy', archive, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<br>
+        <tbody>
+          <% @archives.each do |archive| %>
+            <tr>
+              <td><%= archive.id %></td>
+              <td><%= archive.attachment_url.split("/").last %></td>
+              <td><%=link_to "Link arquivo", archive.attachment_url, target: "_blank" %> </td>
+              <td><%= link_to 'Visualizar', archive %></td>
+              <td><%= link_to 'Apagar', archive, method: :delete, data: { confirm: 'Tem certeza que deseja apagar esse arquivo e remover todas as transações por ele armazenadas?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
 
-<%= link_to 'New Archive', new_archive_path %>
 
-<% @store.each do |store| %>
-<%= store.name %> - <%= store.cpf %> - <%= store.owner %><br/>
-<%end%>
+  <div class="card col-12" >
+    <h1>Lojas</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Loja</th>
+          <th>Dono</th>
+          <th>CPF</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @store.each do |store| %>
+          <tr>
+            <td><%= store.name %></td>
+            <td><%= store.owner %></td>
+            <td><%= store.cpf %></td>
+            <td><%= link_to 'Ver transações', store_path(store.id) %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

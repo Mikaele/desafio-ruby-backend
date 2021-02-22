@@ -1,25 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Arquivo</h3>
-
-<p>
-  <strong>Checkhsum:</strong>
-  <%= @archive.checkhsum %>
-</p>
-
-<p>
-  <strong>Nº de Linhas:</strong>
-  <%= @archive.lines %>
-</p>
-
-<p>
-  <strong>Salvo em::</strong>
-  <%= @archive.attachment_url %>
-</p>
-
-
 <div class="card">
     <h2>Trasações</h2>
+    Operações da loja "<%= @store.name %>"
+    <br/>
+    Dono <%= @store.owner%>
+
+    
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -27,31 +15,31 @@
         <th>Data</th>
         <th>Hora</th>
         <th>Valor</th>
-        <th>Loja</th>
-        <th>Dono</th>
         <th>Cartão</th>
-        <th>CPF</th>
         <th>Arquivo</th>
       </tr>
+      
     </thead>
 
     <tbody>
       <% @transactions.each do |t| %>
         <tr>
           <td><%= t.type_transaction.description%></td>
-          <td><%= t.event_date.strftime("%d/%m/%Y") %></td>
           <td><%= t.event_time.strftime("%H:%M:%S")%></td>
+          <td><%= t.event_time %></td>
           <td><%= t.type_transaction.sign%><%= t.value %></td>
-          <td><%= t.store.name%></td>
-          <td><%= t.store.owner%></td>
           <td><%= t.card %></td>
-          <td><%= t.store.cpf %></td>
           <td><%= t.archive.id %></td>
         </tr>
       <% end %>
     </tbody>
+    <tfoot>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong><%= @store.saldo.to_d.round(2, :truncate).to_f%></strong></td>
+    </tr>
+  </tfoot>
   </table>
 </div>
-
 
 <%= link_to 'Voltar', archives_path %>

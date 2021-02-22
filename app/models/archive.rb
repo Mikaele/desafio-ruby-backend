@@ -1,6 +1,6 @@
 class Archive < ApplicationRecord
 
-    has_many :transactions   
+    has_many :transactions, dependent: :destroy   
     mount_uploader :attachment, AttachmentUploader  
 
     validates :checkhsum,  uniqueness: {message: "Esse arquivo já foi enviado e processado"}
@@ -17,7 +17,7 @@ class Archive < ApplicationRecord
         # montando o caminho do arquivo em cache
         path = File.join Rails.root ,"public","uploads" , "tmp", self.attachment_cache
         # Criando um hash para evitar duplicidade de arquivo
-        checksum = Digest::MD5.file(path).base64digest
+        checksum = Digest::SHA256.file(path).hexdigest
         self.checkhsum = checksum
 
         @transactions_out = []
@@ -31,6 +31,7 @@ class Archive < ApplicationRecord
     end
 
     def persist_data_transactions
+        @transaction= []
         @transactions_out.each do |t|
             @store = Store.where(name: t.store,
                 owner: t.owner,
@@ -40,20 +41,25 @@ class Archive < ApplicationRecord
 
             @archive = Archive.where(id: self.id).first
 
-            if @store
-                if @type_transaction
-                    if @archive
-                        @transaction = Transaction.new(value: t.value,
+                        @transaction << Transaction.new(value: t.value,
                             card: t.card,
-                            event_date: t.when,
-                            store:  @store,
-                            archive: @archive,
-                            type_transaction: @type_transaction)
-                        @transaction.save
-                    end
-                end
-            end
+                            event_date: t.when_date,
+                            event_time: t.when_time,
+                            store_id:  @store.id,
+                            archive_id: @archive.id,
+                            type_transaction_id: t.type)
+                           
+                   
         end
+
+        Transaction.transaction do
+            @transaction.each do |t|
+                t.save!
+            end
+            
+            
+        end
+
     end
 
 
