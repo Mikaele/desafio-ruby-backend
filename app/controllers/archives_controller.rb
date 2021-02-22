@@ -14,14 +14,16 @@ class ArchivesController < ApplicationController
   def create
     @archive  = Archive.new(archive_params)
 
-    respond_to do |format|
-      if @archive.save
-        format.html { redirect_to @archive, notice: "Arquivo criado" }
-        format.json { render :show, status: :created, location: @archive }
-      else
-        format.html { render :index, status: :unprocessable_entity }
+      respond_to do |format|
+        if @archive.save
+          format.html { redirect_to @archive, notice: "Arquivo criado" }
+          format.json { render :show, status: :created, location: @archive }
+        else
+          @archives = Archive.all
+          @store = Store.all
+          format.html {render :index, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   def destroy

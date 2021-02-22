@@ -5,7 +5,8 @@ class Archive < ApplicationRecord
 
     validates :checkhsum,  uniqueness: {message: "Esse arquivo já foi enviado e processado"}
 
-
+    validates :lines, numericality: { greater_than: 0, message: "Arquivo invalido ou vazio, o arquivo deve ser do tipo .txt" }
+    
     before_validation  :set_checksum_and_lines
     after_save  :persist_data_transactions
 
@@ -14,19 +15,23 @@ class Archive < ApplicationRecord
     private
 
     def set_checksum_and_lines
-        # montando o caminho do arquivo em cache
-        path = File.join Rails.root ,"public","uploads" , "tmp", self.attachment_cache
-        # Criando um hash para evitar duplicidade de arquivo
-        checksum = Digest::SHA256.file(path).hexdigest
-        self.checkhsum = checksum
+       if self.attachment_cache !=nil
+            # montando o caminho do arquivo em cache
+            path = File.join Rails.root ,"public","uploads" , "tmp", self.attachment_cache
+            # Criando um hash para evitar duplicidade de arquivo
+            checksum = Digest::SHA256.file(path).hexdigest
+            self.checkhsum = checksum
 
-        @transactions_out = []
+            @transactions_out = []
 
-        File.foreach(path) { |line| 
-                                arch = ArchiveReader.new(line)
-                                @transactions_out << arch
-                            }
-        self.lines =@transactions_out.size
+            File.foreach(path) { |line| 
+                                    arch = ArchiveReader.new(line)
+                                    @transactions_out << arch
+                                }
+            self.lines =@transactions_out.size
+        else
+            self.lines=0
+        end
 
     end
 
