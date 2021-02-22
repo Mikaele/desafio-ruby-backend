@@ -99,9 +99,10 @@ git clone https://github.com/Mikaele/desafio-ruby-backend.git
 cd desafio-ruby-backend
 ```
 *Executando a aplicação*
+
 Todos o comando abaixo dever ser executados no terminal/cmd também 
 
-Compile as imagens necessárias para configurar o ambiente necessário para testar a aplicação
+##### 3. Compile as imagens necessárias para configurar o ambiente necessário para testar a aplicação
 ```sh
 docker-compose up -d
 ```
