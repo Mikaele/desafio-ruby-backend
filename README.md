@@ -90,6 +90,7 @@ caso não tenha ou não queira utilizar o git pode copiar o projeto por download
 *Copiando a aplicação*
 
 ##### 1. Faça o download da aplicação clonando este repositório
+Abra o terminal/cmd e execute o camndo abaixo
 ```sh
 git clone https://github.com/Mikaele/desafio-ruby-backend.git 
 ```
@@ -100,7 +101,7 @@ cd desafio-ruby-backend
 ```
 *Executando a aplicação*
 
-Todos o comando abaixo devem ser executados no terminal/cmd também 
+Todos o comandos abaixo devem ser executados no terminal/cmd também 
 
 ##### 3. Compile as imagens necessárias para configurar o ambiente necessário para testar a aplicação
 ```sh
