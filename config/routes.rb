@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  root 'archives#index'
   resources :archives
   
   resources :store, only: [:show]
