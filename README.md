@@ -87,29 +87,30 @@ Você também vai precisar do Git para o passo 1,
 caso não tenha ou não queira utilizar o git pode copiar o projeto por download [aqui](https://github.com/Mikaele/desafio-ruby-backend/archive/master.zip), nesse caso descompacte o arquivo zip em uma pasta de sua e preferencia caminhe até a pasta pelo terminal/cmd e continue do passo 2.
 
 
-### Copiando a aplicação
+*Copiando a aplicação*
 
-1. Faça o download da aplicação clonando este repositório
+##### 1. Faça o download da aplicação clonando este repositório
 ```sh
 git clone https://github.com/Mikaele/desafio-ruby-backend.git 
 ```
 
-2. Entre no diretório/pasta do projeto pelo terminal/cmd
+##### 2. Entre no diretório/pasta do projeto pelo terminal/cmd
 ```sh
 cd desafio-ruby-backend
 ```
-### Executando a aplicação
+*Executando a aplicação*
+Todos o comando abaixo dever ser executados no terminal/cmd também 
 
 Compile as imagens necessárias para configurar o ambiente necessário para testar a aplicação
 ```sh
 docker-compose up -d
 ```
 
-4. Verificando o status dos containers
+##### 4. Verificando o status dos containers
 ```sh
 docker-compose ps
 ``` 
-5. Criando o banco de dados  e as tabelas
+##### 5. Criando o banco de dados e as tabelas
 
 cria o banco
 ```sh
@@ -124,4 +125,4 @@ insere os tipos das transações, pre cadastradas
 docker-compose exec web rake db:seed
 ```  
 
-6. Se até aqui deu tudo certo você pode visualizar em [http://localhost:3000/](http://localhost:3000/) 
+##### 6. Se até aqui deu tudo certo você pode visualizar em [http://localhost:3000/](http://localhost:3000/) 
